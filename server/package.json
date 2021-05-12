@@ -11,7 +11,9 @@
   "author": "Klaudiusz Frajkowksi",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^9.0.2",
     "express": "^4.17.1",
+    "firebase": "^8.6.0",
     "socket.io": "^4.1.1"
   },
   "devDependencies": {
