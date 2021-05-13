@@ -1,13 +1,13 @@
 import express from 'express';
 import io from 'socket.io';
 import serverConfig from './serverConfig';
-import createFromRoute from "./routes/createFromRoute";
+import api from "./routes/fromRoute";
 
 const PORT = 8080 || serverConfig.port
 const app = express();
 
 app.use(express.json());
-app.use('/create-new-from', createFromRoute);
+app.use('/from', api);
 
 app.get('/', ((req, res) => {
     res.send('hello')
