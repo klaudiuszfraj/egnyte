@@ -6,8 +6,12 @@ const firestore = db.firestore();
 
 
 export const createForm = async (req:Request, res:Response) => {
+    if (!req.body.timestamp || req.body.fields.length === 0){
+        res.status(400).send('timestamp ans fields are required');
+    }
+    //todo::check every field
     try {
-        const data = req.body;
+        const data:Form = req.body;
         await firestore.collection('forms').doc().set(data);
         res.send('From added successfully')
     }catch (error) {
