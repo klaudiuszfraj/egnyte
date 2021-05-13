@@ -29,9 +29,9 @@ export const getAllForms = async (req:Request, res:Response) => {
         } else {
             data.forEach(doc => {
                 const form = new Form(
-                    doc.id,
                     doc.data().timestamp,
                     doc.data().fields,
+                    doc.id,
                 )
                 if (formsArray){
                 }

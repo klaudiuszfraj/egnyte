@@ -1,5 +1,4 @@
 export default class Form {
-    id:string;
     timestamp:number;
     fields: {
         type: string;
@@ -7,12 +6,13 @@ export default class Form {
         value: string;
         checked: boolean;
     }[]
-    constructor(id:string, timestamp:number, fields:{
+    id?:string;
+    constructor(timestamp:number, fields:{
         type: string;
         name: string;
         value: string;
         checked: boolean;
-    }[]) {
+    }[], id?:string,) {
         this.id = id
         this.timestamp = timestamp
         this.fields = fields
