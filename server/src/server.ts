@@ -7,7 +7,7 @@ const PORT = 8080 || serverConfig.port
 const app = express();
 
 app.use(express.json());
-app.use('/from', api);
+app.use('/form', api);
 
 app.get('/', ((req, res) => {
     res.send('hello')
