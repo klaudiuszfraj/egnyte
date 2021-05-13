@@ -1,14 +1,14 @@
 export default class Form {
     timestamp:number;
     fields: {
-        type: string;
+        type: 'checkbox' | 'radio';
         name: string;
         value: string;
         checked: boolean;
     }[]
     id?:string;
     constructor(timestamp:number, fields:{
-        type: string;
+        type: 'checkbox' | 'radio';
         name: string;
         value: string;
         checked: boolean;
