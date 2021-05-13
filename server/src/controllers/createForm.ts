@@ -1,11 +1,11 @@
 import db from "../db";
 import Form from '../models/form';
-import {NextFunction, Request, Response} from "express";
+import {Request, Response} from "express";
 
 const firestore = db.firestore();
 
 
-export const createForm = async (req:Request, res:Response, next:NextFunction) => {
+export const createForm = async (req:Request, res:Response) => {
     try {
         const data = req.body;
         await firestore.collection('forms').doc().set(data);
@@ -15,7 +15,7 @@ export const createForm = async (req:Request, res:Response, next:NextFunction) =
     }
 }
 
-export const getAllForms = async (req:Request, res:Response, next:NextFunction) => {
+export const getAllForms = async (req:Request, res:Response) => {
     try {
         const forms = await firestore.collection('forms');
         const data = await forms.get();
