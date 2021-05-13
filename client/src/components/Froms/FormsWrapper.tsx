@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import style from './Forms.module.scss';
 import {useSocket} from "../../context/SocketProvider";
 import Input from "../Input/Input";
 import {InterfaceForm} from "../../interfaces";
@@ -23,7 +24,7 @@ const FormsWrapper:React.FC = () => {
     return (
         <>
             {state && state.map(form => (
-                <div key={form.id}>
+                <section key={form.id} className={style.forms}>
                     <form action="" id={form.id} data-timestamp={form.timestamp}>
                         {form.fields.map(field => (
                             <Input
@@ -35,7 +36,7 @@ const FormsWrapper:React.FC = () => {
                             />
                         ))}
                     </form>
-                </div>
+                </section>
             ))}
         </>
     );
