@@ -5,6 +5,12 @@ import cors from 'cors';
 import serverConfig from './serverConfig';
 import api from "./routes/fromRoute";
 
+//temp database
+import db from "./db";
+import Form from "./models/form";
+const firestore = db.firestore();
+//
+
 const PORT = 8080 || serverConfig.port
 const app = express();
 const httpServer = createServer(app);
@@ -26,8 +32,34 @@ app.use('/form', api);
 app.get('/', ((req, res) => {
     res.send('hello')
 }));
-io.on('connection', () => {
-    console.log('connected')
+io.on('connection', socket => {
+    //todo::
+    // send forms from database,
+    // rename api,
+    // firestore function so separate file,
+    // create edit socket
+    // create admin panel
+        (async () => {
+            const forms = await firestore.collection('forms');
+            const data = await forms.get();
+            const formsArray:Form[] = []
+            data.forEach(doc => {
+                const form = new Form(
+                    doc.data().timestamp,
+                    doc.data().fields,
+                    doc.id,
+                )
+                if (formsArray){
+                }
+                formsArray.push(form);
+            })
+            socket.emit('connected', formsArray)
+        })()
+
+    socket.on('edit', ({data}) => {
+        console.log(`edited`, data)
+    })
+
 })
 
 httpServer.listen(PORT, ()=>console.log(`server is running on ${PORT}`));
