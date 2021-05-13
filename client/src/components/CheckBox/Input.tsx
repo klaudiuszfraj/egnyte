@@ -1,16 +1,15 @@
 import React from 'react';
 import style from './Input.module.scss';
+import {InterfaceInput} from "../../interfaces";
+import {useSocket} from "../../context/SocketProvider";
 
-interface InterfaceInput {
-    type: 'checkbox' | 'radio' ;
-    name: string;
-    value: string;
-    checked: boolean;
-}
 
 const Input:React.FC<InterfaceInput> = ({type,name,value,checked}) => {
+    const socket = useSocket()
     const handleClick = () => {
-        console.log(`input ${value} clicked`)
+        if (socket) {
+            socket.emit('edit', {data: 'ddd'})
+        }
     }
     return (
         <label htmlFor={name} className={style.input} >
