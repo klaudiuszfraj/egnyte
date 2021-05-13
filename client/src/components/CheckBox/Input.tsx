@@ -1,19 +1,23 @@
 import React from 'react';
+import style from './Input.module.scss';
 
-interface InterfaceCheckbox {
+interface InterfaceInput {
     type: 'checkbox' | 'radio' ;
     name: string;
     value: string;
     checked: boolean;
 }
 
-const Checkbox:React.FC<InterfaceCheckbox> = ({type,name,value,checked}) => {
+const Input:React.FC<InterfaceInput> = ({type,name,value,checked}) => {
+    const handleClick = () => {
+        console.log(`input ${value} clicked`)
+    }
     return (
-        <label htmlFor={name}>
-            <input name={name} type={type} checked={checked}/>
+        <label htmlFor={name} className={style.input} >
+            <input name={name} type={type} checked={checked} onChange={handleClick}/>
             {value}
         </label>
     );
 };
 
-export default Checkbox;
+export default Input;
