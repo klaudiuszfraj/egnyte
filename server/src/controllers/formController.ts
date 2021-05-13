@@ -70,4 +70,14 @@ export const updateForm = async (req:Request, res:Response) => {
     } catch (error) {
         res.status(400).send(error.message);
     }
-}
+};
+
+export const deleteForm = async (req:Request, res:Response) => {
+  try {
+    const id = req.params.id;
+    await firestore.collection('forms').doc(id).delete();
+    res.send('Record deleted successfully')
+  } catch (error) {
+      res.status(400).send(error.message);
+  }
+};
