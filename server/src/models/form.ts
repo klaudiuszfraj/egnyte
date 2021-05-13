@@ -1,10 +1,20 @@
 export default class Form {
     id:string;
-    action:string;
-    timestamp:string;
-    constructor(id:string, action:string, timestamp:number, ) {
+    timestamp:number;
+    fields: {
+        type: string;
+        name: string;
+        value: string;
+        checked: boolean;
+    }[]
+    constructor(id:string, timestamp:number, fields:{
+        type: string;
+        name: string;
+        value: string;
+        checked: boolean;
+    }[]) {
         this.id = id
-        this.action = id
-        this.timestamp = id
+        this.timestamp = timestamp
+        this.fields = fields
     }
 }
