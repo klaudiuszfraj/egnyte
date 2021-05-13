@@ -1,4 +1,4 @@
-class NewForm {
+export default class Form {
     id:string;
     action:string;
     timestamp:string;
