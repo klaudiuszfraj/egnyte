@@ -1,13 +1,16 @@
 import express from 'express';
+import io from 'socket.io';
+import serverConfig from './serverConfig';
+import createFromRoute from "./routes/createFromRoute";
 
-const app =express();
+const PORT = 8080 || serverConfig.port
+const app = express();
 
-const add = (a:number,b:number) => a+b;
+app.use(express.json());
+app.use('/create-new-from', createFromRoute);
 
 app.get('/', ((req, res) => {
-    req.hostname = 'dfdf';
-    console.log(add(5, 3));
     res.send('hello')
 }));
 
-app.listen(5000, ()=>console.log('server is running'))
+app.listen(PORT, ()=>console.log(`server is running on ${PORT}`));
