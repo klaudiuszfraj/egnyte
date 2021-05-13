@@ -58,4 +58,16 @@ export const getOneForm = async (req:Request, res:Response) => {
     } catch (error) {
         res.status(400).send(error.message);
     }
+};
+
+export const updateForm = async (req:Request, res:Response) => {
+    try {
+        const id = req.params.id;
+        const data = req.body;
+        const form = await firestore.collection('forms').doc(id);
+        await form.update(data);
+        res.send('Form record updated successfully');
+    } catch (error) {
+        res.status(400).send(error.message);
+    }
 }
