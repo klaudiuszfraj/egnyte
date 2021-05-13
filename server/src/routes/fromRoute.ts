@@ -1,5 +1,5 @@
 import express from "express";
-import {createForm, getAllForms} from "../controllers/createForm";
+import {createForm, getAllForms} from "../controllers/formController";
 
 const router = express.Router();
 
