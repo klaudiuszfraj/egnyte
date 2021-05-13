@@ -4,7 +4,7 @@ import express, {NextFunction, Request, Response} from "express";
 
 const firestore = db.firestore();
 
-export const addForm = async (req:Request, res:Response, next:NextFunction) => {
+export const createForm = async (req:Request, res:Response, next:NextFunction) => {
     try {
         const data = req.body;
         await firestore.collection('forms').doc().set(data);
