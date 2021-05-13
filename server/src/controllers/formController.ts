@@ -17,7 +17,7 @@ export const createForm = async (req:Request, res:Response) => {
     }catch (error) {
         res.status(400).send(error.message);
     }
-}
+};
 
 export const getAllForms = async (req:Request, res:Response) => {
     try {
@@ -40,6 +40,22 @@ export const getAllForms = async (req:Request, res:Response) => {
             res.send(formsArray);
         }
     }catch (error) {
+        res.status(400).send(error.message);
+    }
+};
+
+export const getOneForm = async (req:Request, res:Response) => {
+    try {
+        const id = req.params.id;
+        const form = await firestore.collection('forms').doc(id);
+        const data = await form.get();
+        if (!data.exists) {
+            res.status(404).send('Form with the given ID not found');
+        } else {
+            res.send(data.data());
+        }
+
+    } catch (error) {
         res.status(400).send(error.message);
     }
 }
