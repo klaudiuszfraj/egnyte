@@ -1,11 +1,10 @@
-import {createServer} from "http";
-import { Server } from 'socket.io';
-import Client from "socket.io-client";
+const { createServer } = require("http");
+const { Server } = require("socket.io");
+const Client = require("socket.io-client");
 
-
-describe("egnyte server", () => {
+describe("Egnyte socket server", () => {
     let io, serverSocket, clientSocket;
-    const port = 8080
+
     beforeAll((done) => {
         const httpServer = createServer();
         io = new Server(httpServer);
@@ -19,26 +18,26 @@ describe("egnyte server", () => {
         });
     });
 
-    // afterAll(() => {
-    //     io.close();
-    //     clientSocket.close();
-    // });
+    afterAll(() => {
+        io.close();
+        clientSocket.close();
+    });
 
-    // test("should work", (done) => {
-    //     clientSocket.on("hello", (arg) => {
-    //         expect(arg).toBe("world");
-    //         done();
-    //     });
-    //     serverSocket.emit("hello", "world");
-    // });
+    test("should work", (done) => {
+        clientSocket.on("hello", (arg) => {
+            expect(arg).toBe("world");
+            done();
+        });
+        serverSocket.emit("hello", "world");
+    });
 
-    // test("should work (with ack)", (done) => {
-    //     serverSocket.on("hi", (cb) => {
-    //         cb("hola");
-    //     });
-    //     clientSocket.emit("hi", (arg) => {
-    //         expect(arg).toBe("hola");
-    //         done();
-    //     });
-    // });
+    test("should work (with ack)", (done) => {
+        serverSocket.on("hi", (cb) => {
+            cb("hola");
+        });
+        clientSocket.emit("hi", (arg) => {
+            expect(arg).toBe("hola");
+            done();
+        });
+    });
 });
