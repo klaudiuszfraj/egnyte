@@ -25,7 +25,7 @@ const FormsWrapper:React.FC = () => {
         <>
             {state && state.map(form => (
                 <section key={form.id} className={style.forms}>
-                    <Form id={form.id} fields={form.fields} timestamp={form.timestamp} />
+                    <Form id={form.id} fields={form.fields} timestamp={form.timestamp} radio={form.radio} />
                 </section>
             ))}
         </>
