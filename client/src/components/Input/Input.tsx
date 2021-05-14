@@ -9,9 +9,10 @@ interface InterfaceInputWithChange extends InterfaceInput{
 const Input:React.FC<InterfaceInputWithChange> = ({type,name,value,checked, id, handleChange}) => {
 
     return (
-        <label htmlFor={name} className={style.input}>
+        <label htmlFor={name} className={style.label}>
             <input id={id} name={name} type={type} checked={checked} onChange={(e) => handleChange(e)}/>
             {value}
+            <span className={style.checkmark}/>
         </label>
     );
 };
