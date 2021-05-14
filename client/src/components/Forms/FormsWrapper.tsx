@@ -10,8 +10,8 @@ const FormsWrapper:React.FC = () => {
     const socket = useSocket()
     useEffect(() => {
         if (socket) {
-            socket.on('connected', (formsArray:any) => {
-                console.log('dd')
+            socket.on('connected', (formsArray:InterfaceForm[]) => {
+                console.log('received forms form server')
                 setState(formsArray);
             })
             return () => {
