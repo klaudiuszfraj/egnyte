@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import style from './Forms.module.scss';
 import {useSocket} from "../../context/SocketProvider";
-import Input from "../Input/Input";
 import {InterfaceForm} from "../../interfaces";
+import Form from "../Form/Form";
 
 
 const FormsWrapper:React.FC = () => {
@@ -25,17 +25,7 @@ const FormsWrapper:React.FC = () => {
         <>
             {state && state.map(form => (
                 <section key={form.id} className={style.forms}>
-                    <form action="" id={form.id} data-timestamp={form.timestamp}>
-                        {form.fields.map(field => (
-                            <Input
-                                key={field.type}
-                                type={field.type}
-                                name={field.name}
-                                value={field.value}
-                                checked={field.checked}
-                            />
-                        ))}
-                    </form>
+                    <Form id={form.id} fields={form.fields} timestamp={form.timestamp} />
                 </section>
             ))}
         </>
