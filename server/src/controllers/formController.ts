@@ -1,9 +1,9 @@
-import db from "../db";
+import firestore from "../db";
 import Form from '../models/form';
 import {Request, Response} from "express";
 import {getAllFromDatabase, updateFormInDatabase} from "../utilityFunctions";
 
-const firestore = db.firestore();
+//todo:: firestore, from
 
 export const createForm = async (req:Request, res:Response) => {
     if (!req.body.timestamp || req.body.fields.length === 0){

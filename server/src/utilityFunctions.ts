@@ -1,6 +1,5 @@
-import db from "./db";
+import firestore from "./db";
 import Form from "./models/form";
-const firestore = db.firestore();
 
 export const getAllFromDatabase = async () => {
     const forms = await firestore.collection('forms');
