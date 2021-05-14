@@ -24,18 +24,18 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 app.use(express.json());
-app.use('/form', api);
+app.use('/api', api);
 
 app.get('/', ((req, res) => {
     res.send('hello')
 }));
 io.on('connection', async socket => {
     //todo::
-    // send forms from database,
     // rename api,
     // firestore function so separate file,
     // create edit socket
     // create admin panel
+    //rename fiels to checkbox
 
 
     const formsArray = await getAllFromDatabase();
