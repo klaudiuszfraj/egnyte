@@ -32,13 +32,13 @@ app.get('/', ((req, res) => {
 io.on('connection', async socket => {
     //todo::
     // create admin panel
-    // rename fiels to checkbox
 
 
     const formsArray = await getAllFromDatabase();
     socket.emit('connected', formsArray)
 
     socket.on('edit', async ({formId, update}:{formId:string, update: Form}) => {
+        //todo:: check timestamp if older than in db update olly certain fields
         await updateFormInDatabase(formId, update);
         const updatedForm = await getAllFromDatabase();
         io.emit('connected', updatedForm)
