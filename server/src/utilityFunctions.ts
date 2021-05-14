@@ -17,7 +17,7 @@ export const getAllFromDatabase = async () => {
     })
     return formsArray;
 }
-export const updateFormInDatabase = async (formId:string, update:any) => {
+export const updateFormInDatabase = async (formId:string, update:Form) => {
     const form = await firestore.collection('forms').doc(formId);
     await form.set({
         timestamp: update.timestamp,
