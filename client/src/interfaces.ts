@@ -8,7 +8,7 @@ export interface InterfaceInput {
 
 export interface InterfaceForm {
     timestamp:number;
-    fields: InterfaceInput[];
-    radio: InterfaceInput[];
+    checkboxes: InterfaceInput[];
+    radios: InterfaceInput[];
     id?:string;
 }

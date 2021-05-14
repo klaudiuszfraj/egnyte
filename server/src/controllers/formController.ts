@@ -5,7 +5,7 @@ import {getAllFromDatabase, updateFormInDatabase} from "../utilityFunctions";
 
 
 export const createForm = async (req:Request, res:Response) => {
-    if (!req.body.timestamp || req.body.fields.length === 0){
+    if (!req.body.timestamp || req.body.checkboxes.length === 0|| req.body.radios.length === 0){
         res.status(400).send('timestamp ans fields are required');
     }
     //todo::check every field, validate id for other methods

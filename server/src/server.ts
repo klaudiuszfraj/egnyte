@@ -31,11 +31,8 @@ app.get('/', ((req, res) => {
 }));
 io.on('connection', async socket => {
     //todo::
-    // rename api,
-    // firestore function so separate file,
-    // create edit socket
     // create admin panel
-    //rename fiels to checkbox
+    // rename fiels to checkbox
 
 
     const formsArray = await getAllFromDatabase();

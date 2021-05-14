@@ -1,12 +1,12 @@
 export default class Form {
     timestamp:number;
-    fields: {
+    checkboxes: {
         type: 'checkbox';
         name: string;
         value: string;
         checked: boolean;
     }[];
-    radio: {
+    radios: {
         type: 'radio';
         name: string;
         value: string;
@@ -15,13 +15,13 @@ export default class Form {
     id?:string;
     constructor(
         timestamp:number,
-        fields:{
+        checkboxes:{
             type: 'checkbox';
             name: string;
             value: string;
             checked: boolean;
         }[],
-        radio:{
+        radios:{
             type: 'radio';
             name: string;
             value: string;
@@ -31,7 +31,7 @@ export default class Form {
         ) {
         this.id = id
         this.timestamp = timestamp
-        this.fields = fields
-        this.radio = radio
+        this.checkboxes = checkboxes
+        this.radios = radios
     }
 }

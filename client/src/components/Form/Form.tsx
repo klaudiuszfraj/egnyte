@@ -3,11 +3,11 @@ import Input from "../Input/Input";
 import {InterfaceForm} from "../../interfaces";
 import {useSocket} from "../../context/SocketProvider";
 
-const Form:React.FC<InterfaceForm> = ({ timestamp, fields, radio, id  }) => {
+const Form:React.FC<InterfaceForm> = ({ timestamp, checkboxes, radios, id  }) => {
     const socket = useSocket()
     const handleClick = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const fieldsCopy = [...fields];
-        const radioCopy = [...radio];
+        const fieldsCopy = [...checkboxes];
+        const radioCopy = [...radios];
         if (e.target.type === 'checkbox') {
             fieldsCopy.map(field => {
                 if (field.name === e.target.name) {
@@ -29,27 +29,27 @@ const Form:React.FC<InterfaceForm> = ({ timestamp, fields, radio, id  }) => {
                 formId: id,
                 update: {
                     timestamp: new Date().getTime(),
-                    fields: fieldsCopy,
-                    radio: radioCopy,
+                    checkboxes: fieldsCopy,
+                    radios: radioCopy,
                 }
             })
         }
     }
     return (
         <form action="" id={id} data-timestamp={timestamp}>
-            {fields.map(field => (
+            {checkboxes.map(checkbox => (
                 <Input
                     id={'d'}
-                    key={field.id}
-                    type={field.type}
-                    name={field.name}
-                    value={field.value}
-                    checked={field.checked}
+                    key={checkbox.id}
+                    type={checkbox.type}
+                    name={checkbox.name}
+                    value={checkbox.value}
+                    checked={checkbox.checked}
                     handleChange={handleClick}
                 />
             ))}
             <br/>
-            {radio.map(radio => (
+            {radios.map(radio => (
                 <Input
                     id={radio.id}
                     key={radio.id}
