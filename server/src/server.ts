@@ -4,12 +4,9 @@ import { Server } from 'socket.io';
 import cors from 'cors';
 import serverConfig from './serverConfig';
 import api from "./routes/fromRoute";
-
-//temp database
-import db from "./db";
+import {getAllFromDatabase, updateFormInDatabase} from "./utilityFunctions";
 import Form from "./models/form";
-const firestore = db.firestore();
-//
+
 
 const PORT = 8080 || serverConfig.port
 const app = express();
@@ -32,32 +29,22 @@ app.use('/form', api);
 app.get('/', ((req, res) => {
     res.send('hello')
 }));
-io.on('connection', socket => {
+io.on('connection', async socket => {
     //todo::
     // send forms from database,
     // rename api,
     // firestore function so separate file,
     // create edit socket
     // create admin panel
-        (async () => {
-            const forms = await firestore.collection('forms');
-            const data = await forms.get();
-            const formsArray:Form[] = []
-            data.forEach(doc => {
-                const form = new Form(
-                    doc.data().timestamp,
-                    doc.data().fields,
-                    doc.id,
-                )
-                if (formsArray){
-                }
-                formsArray.push(form);
-            })
-            socket.emit('connected', formsArray)
-        })()
 
-    socket.on('edit', ({data}) => {
-        console.log(`edited`, data)
+
+    const formsArray = await getAllFromDatabase();
+    socket.emit('connected', formsArray)
+
+    socket.on('edit', async ({formId, update}:{formId:string, update: Form}) => {
+        await updateFormInDatabase(formId, update);
+        const updatedForm = await getAllFromDatabase();
+        io.emit('connected', updatedForm)
     })
 
 })
