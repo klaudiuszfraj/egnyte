@@ -9,6 +9,7 @@ export const getAllFromDatabase = async () => {
         const form = new Form(
             doc.data().timestamp,
             doc.data().fields,
+            doc.data().radio,
             doc.id,
         )
         if (formsArray){
@@ -21,7 +22,8 @@ export const updateFormInDatabase = async (formId:string, update:Form) => {
     const form = await firestore.collection('forms').doc(formId);
     await form.set({
         timestamp: update.timestamp,
-        fields: update.fields
+        fields: update.fields,
+        radio: update.radio,
 
     });
 }
